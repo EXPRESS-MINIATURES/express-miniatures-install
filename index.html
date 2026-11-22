@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installer le programme — Express Miniatures</title>
+<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+<style>
+  :root{
+    --bleu:#135394; --nuit:#142D4C; --jaune:#F5D024; --fond:#F6F8FB; --gris:#5A6472;
+    --esp-tools-button-color:#135394;
+    --esp-tools-button-text-color:#ffffff;
+    --esp-tools-button-border-radius:10px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--nuit);background:var(--fond);line-height:1.55}
+  header{background:#fff;border-bottom:4px solid var(--jaune);padding:28px 20px;text-align:center}
+  header img{width:min(360px,80%);height:auto;display:block;margin:0 auto}
+  main{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+  h1{font-size:1.7rem;margin:0 0 8px;text-align:center}
+  .intro{text-align:center;color:var(--gris);margin:0 auto 32px;max-width:620px}
+  .avant{background:#FFF8D6;border-left:6px solid var(--jaune);border-radius:8px;padding:14px 18px;margin-bottom:32px}
+  .avant strong{display:block;margin-bottom:4px}
+  .cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:40px}
+  .carte{background:#fff;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(20,45,76,.12);display:flex;flex-direction:column;gap:12px}
+  .carte h2{margin:0;font-size:1.25rem;color:var(--bleu)}
+  .carte p{margin:0;color:var(--gris);flex:1}
+  .bouton{font:inherit;font-weight:600;font-size:1rem;min-height:48px;width:100%;border:0;border-radius:10px;background:var(--bleu);color:#fff;cursor:pointer}
+  .bouton:hover{background:var(--nuit)}
+  .bouton:focus-visible{outline:3px solid var(--jaune);outline-offset:2px}
+  .refus{display:block;color:#9B2C1F;font-weight:600}
+  h3{font-size:1.15rem;margin:36px 0 10px}
+  ol{padding-left:22px;margin:0}
+  li{margin-bottom:8px}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid #E3E8EF;vertical-align:top}
+  th{background:var(--nuit);color:#fff;font-weight:600}
+  footer{text-align:center;color:var(--gris);font-size:.9rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <img src="logo-express-miniatures.png" alt="Express Miniatures">
+</header>
+
+<main>
+  <h1>Installer le programme de votre carte</h1>
+  <p class="intro">Choisissez la façon dont vous voulez piloter vos trains, branchez l'ESP32 en USB et cliquez sur le bouton. Tout se fait depuis ce navigateur, sans rien installer.</p>
+
+  <div class="avant">
+    <strong>Avant de commencer</strong>
+    Débranchez l'alimentation des servos (le bloc 5 V). Utilisez Chrome ou Edge sur ordinateur, ou Chrome sur Android, et un câble USB de données.
+  </div>
+
+  <div class="cartes">
+    <section class="carte">
+      <h2>Version téléphone</h2>
+      <p>Pilotage depuis l'application sur votre téléphone, en Bluetooth.</p>
+      <esp-web-install-button manifest="manifest-telephone.json">
+        <button slot="activate" class="bouton">Installer la version téléphone</button>
+        <span slot="unsupported" class="refus">Ce navigateur ne permet pas l'installation. Ouvrez cette page dans Chrome ou Edge sur ordinateur, ou dans Chrome sur Android.</span>
+        <span slot="not-allowed" class="refus">L'installation n'est possible que depuis une page sécurisée (https).</span>
+      </esp-web-install-button>
+    </section>
+
+    <section class="carte">
+      <h2>Version manette</h2>
+      <p>Pilotage avec une manette de jeu sans fil, et l'écran de la carte pour suivre le réseau.</p>
+      <esp-web-install-button manifest="manifest-manette.json">
+        <button slot="activate" class="bouton">Installer la version manette</button>
+        <span slot="unsupported" class="refus">Ce navigateur ne permet pas l'installation. Ouvrez cette page dans Chrome ou Edge sur ordinateur, ou dans Chrome sur Android.</span>
+        <span slot="not-allowed" class="refus">L'installation n'est possible que depuis une page sécurisée (https).</span>
+      </esp-web-install-button>
+    </section>
+  </div>
+
+  <h3>Comment ça se passe</h3>
+  <ol>
+    <li>Reliez l'ESP32 à l'ordinateur avec le câble USB.</li>
+    <li>Cliquez sur le bouton de la version choisie.</li>
+    <li>Dans la fenêtre qui s'ouvre, choisissez le port de l'ESP32 (souvent « CP210x », « CH340 » ou « USB Serial »), puis <strong>Connexion</strong>.</li>
+    <li>Confirmez l'installation et attendez la fin, sans débrancher le câble.</li>
+    <li>Débranchez puis rebranchez l'USB : la carte redémarre avec son programme.</li>
+  </ol>
+
+  <h3>En cas de problème</h3>
+  <table>
+    <thead><tr><th scope="col">Ce que vous voyez</th><th scope="col">Que faire</th></tr></thead>
+    <tbody>
+      <tr><td>Aucun port dans la liste</td><td>Changez de câble USB : il ne transporte sûrement que le courant. Sinon, installez le pilote de la puce USB de l'ESP32 (CP210x ou CH340, le nom est gravé sur la puce).</td></tr>
+      <tr><td>La connexion échoue ou reste bloquée</td><td>Recommencez en maintenant le bouton <strong>BOOT</strong> de l'ESP32 enfoncé, et relâchez-le dès que l'installation démarre.</td></tr>
+      <tr><td>Port déjà utilisé</td><td>Fermez l'Arduino IDE, un moniteur série ou un autre onglet ouvert sur cette page.</td></tr>
+      <tr><td>Installation interrompue</td><td>Rebranchez l'ESP32 et recommencez : c'est sans risque.</td></tr>
+    </tbody>
+  </table>
+</main>
+
+<footer>Express Miniatures</footer>
+</body>
+</html>
