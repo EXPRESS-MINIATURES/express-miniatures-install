@@ -1,0 +1,8 @@
+Déposez ici vos deux fichiers .bin « merged », en les renommant exactement ainsi :
+
+  express-miniatures-telephone.merged.bin   (version téléphone)
+  express-miniatures-manette.merged.bin     (version manette)
+
+Pour publier une mise à jour : remplacez le fichier, puis augmentez le numéro
+"version" dans le manifeste correspondant (manifest-telephone.json ou
+manifest-manette.json), par exemple 1.0.0 -> 1.0.1.

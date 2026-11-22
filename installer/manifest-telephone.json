@@ -1,0 +1,13 @@
+{
+  "name": "Express Miniatures — version téléphone",
+  "version": "1.0.0",
+  "new_install_prompt_erase": false,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "firmware/express-miniatures-telephone.merged.bin", "offset": 0 }
+      ]
+    }
+  ]
+}
